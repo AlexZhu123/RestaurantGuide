@@ -56,6 +56,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         holder.cuisine.setText(restaurant.getCuisine());
         holder.location.setText(restaurant.getLocation());
         holder.rating.setText(String.valueOf(restaurant.getRating()) + "✰");
+        holder.photo.setImageResource(restaurant.getPicture());
     }
     @Override
     public int getItemCount(){
