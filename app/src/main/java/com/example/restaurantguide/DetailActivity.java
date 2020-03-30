@@ -18,6 +18,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView rating2;
     private ImageView photo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -29,6 +30,8 @@ public class DetailActivity extends AppCompatActivity {
         rating2 = findViewById(R.id.RatingNo);
         price = findViewById(R.id.Price);
         recommendation = findViewById(R.id.Recommendation);
+        photo = findViewById(R.id.Photo);
+        rating = findViewById(R.id.Rating);
 
         Intent intent = getIntent();
         int position = intent.getIntExtra(MainActivity.EXTRA_MESSAGE,0);
@@ -36,10 +39,22 @@ public class DetailActivity extends AppCompatActivity {
         mRestaurant = Restaurant.getRestaurant().get(position);
         name.setText(mRestaurant.getName());
         rating2.setText(String.valueOf(mRestaurant.getRating()));
+        if(mRestaurant.getRating() > 3.5 && mRestaurant.getRating() <= 4.0) {
+            rating.setImageResource(R.drawable.fostar);
+        }
+        if(mRestaurant.getRating() > 4.0 && mRestaurant.getRating() <= 4.5) {
+            rating.setImageResource(R.drawable.fhstar);
+        }
+        if(mRestaurant.getRating() > 4.5 && mRestaurant.getRating() <= 5.0) {
+            rating.setImageResource(R.drawable.fstar);
+        }
         cuisine.setText(mRestaurant.getCuisine());
         location.setText(mRestaurant.getLocation());
         price.setText(mRestaurant.getPrice());
         recommendation.setText(mRestaurant.getRecommendation());
+        photo.setImageResource(mRestaurant.getPicture());
+
+
     }
 
 }
