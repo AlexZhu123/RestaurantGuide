@@ -1,8 +1,10 @@
 package com.example.restaurantguide;
 
+import android.graphics.Picture;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     private ArrayList<Restaurant> mRestaurants;
     private RecyclerViewClickListener mListener;
 
-    public RestaurantAdapter(ArrayList<Restaurant> restaurants, RecyclerViewClickListener listener) {
+    public RestaurantAdapter(ArrayList<Restaurant> restaurants, ArrayList<Integer> pictures, RecyclerViewClickListener listener) {
         mRestaurants = restaurants;
         mListener = listener;
     }
@@ -23,6 +25,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         public TextView cuisine;
         public TextView location;
         public TextView rating;
+        public ImageView photo;
         private RecyclerViewClickListener mListener;
 
         public RestaurantViewHolder(View v, RecyclerViewClickListener listener){
@@ -33,6 +36,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             cuisine = v.findViewById(R.id.ListCuisine);
             location = v.findViewById(R.id.ListLocation);
             rating = v.findViewById(R.id.ListRating);
+            photo = v.findViewById(R.id.ListPhoto);
         }
 
         @Override
@@ -51,7 +55,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         holder.name.setText(restaurant.getName());
         holder.cuisine.setText(restaurant.getCuisine());
         holder.location.setText(restaurant.getLocation());
-        holder.rating.setText(String.valueOf(restaurant.getRating()));
+        holder.rating.setText(String.valueOf(restaurant.getRating()) + "✰");
     }
     @Override
     public int getItemCount(){
